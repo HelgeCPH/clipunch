@@ -26,13 +26,14 @@ year- are created in chronological order.
 
 ## Installation
 
+```
 pip install clipunch
-
+```
 
 ## Usage
 
 ```
-clipunch.py [--html]
+clipunch [--html]
 ```
 
 Options:
