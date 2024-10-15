@@ -4,6 +4,7 @@ clipunch consumes data from stdin. It has to be comma-separated pairs of dates
 with frequencies. For example, piping the following data to clipunch creates a
 punchard visualization for the complete year 2022 printed to the terminal.
 
+```
 cat << EOF | clipunch
 2022-10-25,3
 2022-11-07,3
@@ -17,7 +18,7 @@ cat << EOF | clipunch
 2022-12-08,2
 2022-12-14,21
 EOF
-
+```
 
 In case data spans more than a year, multiple punchcard visualizations -one per
 year- are created in chronological order.
