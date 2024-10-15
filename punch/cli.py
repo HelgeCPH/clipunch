@@ -144,7 +144,6 @@ def generate_terminal_output(data):
             print()
         print()
 
-    print(map_to_color_space(0))
     print("Legend: min (0 " + fg(*map_to_color_space(1)) + "■" + rs.fg  + f"), max({MAX_FREQ} "+ fg(*map_to_color_space(MAX_FREQ)) + "■" + rs.fg + ")")
 
 
