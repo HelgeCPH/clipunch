@@ -23,6 +23,9 @@ EOF
 In case data spans more than a year, multiple punchcard visualizations -one per
 year- are created in chronological order.
 
+Note, the tools assumes that provided dates are unique. If multiple data values
+for a single date are given, only the last one is visualized.
+
 
 ## Installation
 
@@ -65,4 +68,3 @@ git -C ./spring-framework/ log --author "Juergen Hoeller" --date=short --pretty=
 ```
 
 [![](doc/spring-framework-html.png)](./doc/spring-framework.html)
-
