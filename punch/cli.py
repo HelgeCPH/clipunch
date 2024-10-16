@@ -144,14 +144,14 @@ def generate_terminal_output(data):
             print()
         print()
 
-    print("Legend: min (0 " + fg(*map_to_color_space(1)) + "■" + rs.fg  + f"), max({MAX_FREQ} "+ fg(*map_to_color_space(MAX_FREQ)) + "■" + rs.fg + ")")
+    print("Legend: min (0 " + fg(*map_to_color_space(0)) + "■" + rs.fg  + f"), max({MAX_FREQ} "+ fg(*map_to_color_space(MAX_FREQ)) + "■" + rs.fg + ")")
 
 
 def generate_html_output(data):
     html_template_str = """<!DOCTYPE html>
         <html lang="en">
         <head>
-        <title>Page Title</title>
+        <title>CLIPunch</title>
         <link rel="stylesheet" href="https://unpkg.com/mvp.css">
         <style>
         :root {
@@ -161,7 +161,6 @@ def generate_html_output(data):
         </head>
         <body>
 
-        <h1>What is this?</h1>
         {% for year, weekday_freqs in data.items() -%}
         <h2>{{year}}</h2>
         <table>
@@ -171,21 +170,33 @@ def generate_html_output(data):
             <td>{{weekday}}</td>
             {% for d, f in freqs: -%}
               {% if f is none -%}
-            <td><span title="{{d.strftime('%Y-%m-%d')}}">□</span></td>
+            <td><span title="{{d.strftime('%Y %b %d')}}">□</span></td>
               {% else %}
-            <td><span title="{{d.strftime('%Y-%m-%d')}} {{f}}" style="color:rgb{{map_to_color_space(f)}}">■</span></td>
+            <td><span title="{{d.strftime('%Y %b %d')}}: {{f}}" style="color:rgb{{map_to_color_space(f)}}">■</span></td>
               {%- endif %}
             {%- endfor %}
           </tr>
           {%- endfor %}
         </table>
         {%- endfor %}
+        <h2>Legend</h2>
+        <ul>
+          <li>
+            min: 0 <span title="0" style="color:rgb{{map_to_color_space(0)}}">■</span>
+          </li>
+          <li>
+            max: {{max_freq}} <span title="{{max_freq}}" style="color:rgb{{map_to_color_space(max_freq)}}">■</span>
+          </li>
+          <li>
+            in previous/next year:□</span>
+          </li>
+        </ul>
         </body>
         </html>
     """
 
     template = Template(textwrap.dedent(html_template_str))
-    html_str = template.render(data=data, map_to_color_space=map_to_color_space)
+    html_str = template.render(data=data, max_freq=MAX_FREQ, map_to_color_space=map_to_color_space)
     with tempfile.NamedTemporaryFile(delete=False) as fp:
         fp.write(bytes(html_str, "utf-8"))
         webbrowser.open(f"file://{fp.name}", new=2)
