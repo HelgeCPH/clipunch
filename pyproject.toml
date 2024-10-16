@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "punch"
+name = "clipunch"
 version = "1.0.0"
 description = "A CLI tool to create punchard visualizations."
 authors = ["HelgeCPH <ropf@itu.dk>"]
@@ -22,4 +22,4 @@ requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.scripts]
-clipunch = "punch.cli:main"
+clipunch = "clipunch.cli:main"
