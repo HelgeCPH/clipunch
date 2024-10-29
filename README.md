@@ -58,7 +58,7 @@ git -C ./spring-framework/ log --date=short --pretty=format:%ad | \
 
 The output on the terminal will look similar to the following.
 
-<img src="doc/spring-framework.png" width="40%"/>
+<img src="docs/spring-framework.png" width="40%"/>
 
 
 ```
